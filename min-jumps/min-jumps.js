@@ -3,13 +3,9 @@
 // input: array: [1, 1, 2, 3, 4, 1, 2, 1]
 // output: number of jumps to end (or passed end) --> 4
 
-// check if it only needs 1 jump from arr[0]
-// find the length of the array
-// check if number you are on/passing is greater than your countdown
-
-// hueristic: we know that its advantageous to have big early numbers
-
-// only rule: if at any time, the current number can go to (or passed) the end of the array, then no more stopping
+// iterate through the array. i is going to act as your pointer
+// for each jump (starting at arr[0]) look at an array of your options. Get the max value, set your pointer to that index, and increase jump by 1
+// if 2 of the same max number, value the 2nd one higher
 
 // Complete this algo
 const minJumps = (arr) => {

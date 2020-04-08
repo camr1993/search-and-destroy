@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // input: array: [1, 1, 2, 3, 4, 1, 2, 1]
 // output: number of jumps to end (or passed end) --> 4
@@ -13,24 +13,17 @@
 
 // Complete this algo
 const minJumps = (arr) => {
-  const length = arr.length - 1;
-
-  let jumps = 1;
-  let current = arr[0];
-
-  if (current >= length) {
-    return jumps;
-  } else {
-    let min = length;
-    for (let i = current - 1; i > 0; i--) {
-      let numJumps = minJumps(arr.slice(current - i));
-      if (numJumps < min) {
-        min = numJumps;
-      }
-    }
-    jumps += min;
-    return jumps;
+  let jumps = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let curNum = arr[i];
+    let current = arr.slice(i + 1, curNum + i + 1);
+    let max = Math.max(...current);
+    let maxIndex = current.lastIndexOf(max);
+    let arrIndex = maxIndex + i + 1;
+    jumps++;
+    i = arrIndex;
   }
+  return jumps;
 };
 
 module.exports = minJumps;

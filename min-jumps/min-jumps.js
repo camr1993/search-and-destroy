@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // input: array: [1, 1, 2, 3, 4, 1, 2, 1]
 // output: number of jumps to end (or passed end) --> 4
@@ -16,12 +16,21 @@ const minJumps = (arr) => {
   let jumps = 0;
   for (let i = 0; i < arr.length; i++) {
     let curNum = arr[i];
-    let current = arr.slice(i + 1, curNum + i + 1);
-    let max = Math.max(...current);
-    let maxIndex = current.lastIndexOf(max);
+
+    if (curNum + i >= arr.length - 1) {
+      jumps++;
+      break;
+    }
+
+    let optionsArr = arr.slice(i + 1, curNum + i + 1);
+    let max = Math.max(...optionsArr);
+    // index of options array:
+    let maxIndex = optionsArr.lastIndexOf(max);
+    // index of full array:
     let arrIndex = maxIndex + i + 1;
+
     jumps++;
-    i = arrIndex;
+    i = arrIndex - 1; // -1 because for loop will iterate once for us
   }
   return jumps;
 };

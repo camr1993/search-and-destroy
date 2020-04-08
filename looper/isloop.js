@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Input/Output
 //  listClass -> true/false
@@ -22,11 +22,34 @@ const isLoop = (linkedList) => {
 };
 
 /*
+
+Solution:
+
+1) Make two pointers. One at the head, one at head.next
+2) first node is going to mode one node at a time, second is going to move two nodes at a time
+3) if either is ever null, that means there is a tail (and thus no loop), so return false
+4) If they ever equal each other, that means that they have gone in a circle at some point. So exit the while loops and return true
+
+const isLoop = (linkedlist) => {
+  let firstNode = linkedlist.head;
+  let secondNode = firstNode.next;
+  while (firstNode !== secondNode) {
+    if (firstNode === null || secondNode === null) {
+      return false;
+    }
+    firstNode = firstNode.next;
+    secondNode = secondNode.next.next;
+  }
+  return true;
+};
+
 EXTRA CREDIT:
 
 Write a function findLoop() that consumes a linkedlist with a loop
 This function should return the Node value the loop begins at
 Remember to write some test specs too!
 
-*/
+
+/*
+
 module.exports = isLoop;
